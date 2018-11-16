@@ -15,24 +15,35 @@ export default {
         },
         {
           title: 'Home',
-          icon: 'dashboard',
-          click: () => {}
+          icon: 'home',
+          click: () => this.$router.push('home')
+        },
+        {
+          title: 'Play',
+          icon: 'play_arrow',
+          click: () => this.$router.push('play')
         },
         { 
-          title: 'About',
-          icon: 'question_answer',
-          click: () => {}
+          title: 'Store',
+          icon: 'store',
+          click: () => this.$router.push('store')
+        },
+        { 
+          title: 'Settings',
+          icon: 'settings',
+          click: () => this.$router.push('settings')
         },
         {
           title: 'Logout',
           icon: 'highlight_off',
-          click: () => {
-            console.log(this.$router.push('logout'))
-          }
+          click: () => this.$router.push('logout')
+        },
+        {
+          title: 'Download',
+          icon: 'cloud_download',
+          click: () => {}
         }
-      ],
-      mini: true,
-      right: null
+      ]
     }
   },
   computed: {

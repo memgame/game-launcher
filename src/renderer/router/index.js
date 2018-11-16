@@ -3,6 +3,9 @@ import Router from 'vue-router'
 import store from '@/store'
 import PageLogin from '@/pages/PageLogin'
 import PageHome from '@/pages/PageHome'
+import PagePlay from '@/pages/PagePlay'
+import PageStore from '@/pages/PageStore'
+import PageSettings from '@/pages/PageSettings'
 
 Vue.use(Router)
 
@@ -12,6 +15,30 @@ const router = new Router({
       path: '/home',
       name: 'Home',
       component: PageHome,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/play',
+      name: 'Play',
+      component: PagePlay,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/store',
+      name: 'Store',
+      component: PageStore,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/settings',
+      name: 'Settings',
+      component: PageSettings,
       meta: {
         requiresAuth: true
       }
