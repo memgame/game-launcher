@@ -1,15 +1,28 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+  <v-app dark>
+    <navigation-side v-if="$route.path != '/login'" />
+    <content-container />
+  </v-app>
 </template>
 
 <script>
-  export default {
-    name: 'game-launcher'
+import NavigationSide from '@/components/NavigationSide'
+import ContentContainer from '@/components/ContentContainer'
+
+export default {
+  name: 'game-launcher',
+  components: {
+    NavigationSide,
+    ContentContainer
   }
+}
 </script>
 
 <style>
   /* CSS */
+    html, body, #app{
+        min-height: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
 </style>

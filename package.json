@@ -17,8 +17,8 @@
     "postinstall": ""
   },
   "build": {
-    "productName": "game-launcher",
-    "appId": "com.broproducts.gamelauncher",
+    "productName": "BroProducts Launcher",
+    "appId": "com.broproducts.launcher",
     "directories": {
       "output": "build"
     },
