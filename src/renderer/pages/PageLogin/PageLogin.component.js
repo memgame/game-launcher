@@ -6,7 +6,15 @@ export default {
   props: [],
   data () {
     return {
-
+      email: '',
+      password: '',
+      showPassword: false,
+      rules: {
+        required: value => !!value || 'Required.',
+        min: v => v.length >= 8 || 'Min 8 characters',
+        hasNumber: v => this.hasNumber(v) || 'Needs at least one Number',
+        emailMatch: () => ('The email and password you entered don\'t match')
+      }
     }
   },
   computed: {
@@ -17,8 +25,14 @@ export default {
   },
   methods: {
     ...mapActions(['login']),
-    loginn () {
-      this.login()
+    tryLogin () {
+      this.login({
+        email: this.email,
+        password: this.password
+      })
+    },
+    hasNumber (myString) {
+      return /\d/.test(myString);
     }
   },
   watch: {

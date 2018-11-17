@@ -1,6 +1,24 @@
 <template>
     <div>
-        <v-btn color="success" @click="loginn">Login</v-btn>
+        <v-layout>
+            <v-flex xs12 sm6 md3>
+                <v-text-field
+                    label="Email"
+                    v-model="email"
+                ></v-text-field>
+                <v-text-field
+                    label="Password"
+                    v-model="password"
+                    :append-icon="showPassword ? 'visibility_off' : 'visibility'"
+                    :rules="[rules.required, rules.min, rules.hasNumber]"
+                    :type="showPassword ? 'text' : 'password'"
+                    hint="At least 8 characters and a mix of letters and numbers"
+                    counter
+                    @click:append="showPassword = !showPassword"
+                ></v-text-field>
+            </v-flex>
+        </v-layout>
+        <v-btn color="info" @click="tryLogin">Login</v-btn>
         <div>{{$route.path}}</div>
     </div>
 </template>
