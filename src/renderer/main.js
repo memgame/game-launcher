@@ -8,12 +8,13 @@ import firebase from 'firebase'
 import App from './App'
 import router from './router'
 import store from './store'
-//import { firebaseConfig } from '../../config/config'
+import config from '../../config/config'
+
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.use(Vuetify)
 Vue.http = Vue.prototype.$http = axios
-//Vue.prototype.$firebase = firebase.initializeApp(firebaseConfig)
+Vue.prototype.$firebase = firebase.initializeApp(config.firebase)
 Vue.config.productionTip = false
 
 

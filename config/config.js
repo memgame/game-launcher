@@ -1,5 +1,5 @@
 export default {
-    firebaseConfig: {
+    firebase: {
         apiKey: "AIzaSyBjLeNuaiLRCjYAehwq6sJKSCMxM312VIA",
         authDomain: "game-launcher-1439e.firebaseapp.com",
         databaseURL: "https://game-launcher-1439e.firebaseio.com",

@@ -6,7 +6,7 @@
 
 ``` bash
 # install dependencies
-npm install
+npm install --runtime=electron --target=2.0.0
 
 # serve with hot reload at localhost:9080
 npm run dev
