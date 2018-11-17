@@ -18,11 +18,6 @@ export default {
           icon: 'home',
           click: () => this.$router.push('home')
         },
-        {
-          title: 'Play',
-          icon: 'play_arrow',
-          click: () => this.$router.push('play')
-        },
         { 
           title: 'Store',
           icon: 'store',

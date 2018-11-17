@@ -5,6 +5,7 @@
         hide-overlay
         stateless
         app
+        clipped
         width="200"
     >
         <v-list>
