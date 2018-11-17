@@ -1,7 +1,6 @@
 <template>
 <div>
-    Settings how
-    <div>{{$route.path}}</div>
+    <system-information/>
 </div>
 </template>
 <script src="./PageSettings.component.js"></script>

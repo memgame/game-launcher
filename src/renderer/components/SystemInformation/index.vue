@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div class="title">Information</div>
     <div class="items">
       <div class="item">
         <div class="name">Path:</div>
@@ -46,14 +45,6 @@
 </script>
 
 <style scoped>
-  .title {
-    color: #888;
-    font-size: 18px;
-    font-weight: initial;
-    letter-spacing: .25px;
-    margin-top: 10px;
-  }
-
   .items { margin-top: 8px; }
 
   .item {

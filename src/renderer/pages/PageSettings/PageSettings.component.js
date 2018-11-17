@@ -1,6 +1,8 @@
+import SystemInformation from '@/components/SystemInformation'
+
 export default {
     name: 'page-settings',
-    components: { },
+    components: { SystemInformation },
     props: [],
     data () {
       return {
