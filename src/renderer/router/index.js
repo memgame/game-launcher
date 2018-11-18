@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import firebase from 'firebase'
 import store from '@/store'
 import PageLogin from '@/pages/PageLogin'
 import PageHome from '@/pages/PageHome'
@@ -53,6 +54,7 @@ const router = new Router({
       name: 'Logout',
       beforeEnter: (to, from, next) => {
         if (!store.state.User.isAnonymous) {
+          firebase.auth().signOut()
           store.dispatch('logout')
           next('login')
         } else {

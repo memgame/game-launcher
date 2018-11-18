@@ -6,8 +6,8 @@ export default {
   props: [],
   data () {
     return {
-      email: '',
-      password: '',
+      email: 'test@test.com',
+      password: 'haha1234',
       showPassword: false,
       rules: {
         required: value => !!value || 'Required.',
@@ -24,9 +24,15 @@ export default {
       
   },
   methods: {
-    ...mapActions(['login']),
-    tryLogin () {
-      this.login({
+    ...mapActions(['signIn', 'signUp']),
+    trySignUp () {
+      this.signUp({
+        email: this.email,
+        password: this.password
+      })
+    },
+    trysignIn () {
+      this.signIn({
         email: this.email,
         password: this.password
       })

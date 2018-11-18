@@ -1,26 +1,77 @@
+import firebase from 'firebase'
+
 const state = {
     isAnonymous: true,
     displayName: null,
     uid: null,
-    email: null
+    email: null,
+    token: null,
+    loginError: '',
+    isLoginInProgress: false
 }
 
 const mutations = {
     SET_IS_ANONYMOUS (state, value) {
         state.isAnonymous = value
+    },
+    SET_LOGIN_ERROR (state, value) {
+        state.loginError = value
+    },
+    SET_USER_TOKEN (state, value) {
+        state.token = value
+    },
+    SET_USER_EMAIL (state, value) {
+        state.email = value
+    },
+    SET_USER_UID (state, value) {
+        state.uid = value
+    },
+    LOGOUT_USER (state) {
+        state.isAnonymous = true
+        state.displayName = null
+        state.uid = null
+        state.email = null
+        state.token = null
+        state.loginError = ''
+    },
+    SET_IS_LOGIN_IN_PROGRESS (state, value) {
+        state.isLoginInProgress = value
     }
 }
 
 const actions = {
-    login ({commit}, value) {
-        console.log('login')
-        console.log(value.email)
-        console.log(value.password)
-        commit('SET_IS_ANONYMOUS', false)
+    signUp ({commit}, value) {
+        commit('SET_IS_LOGIN_IN_PROGRESS', true)
+        commit('SET_LOGIN_ERROR', '')
+        firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
+        .then((res) => {
+            commit('SET_USER_EMAIL', res.user.email)
+            commit('SET_USER_UID', res.user.uid)
+            commit('SET_IS_ANONYMOUS', false)
+            commit('SET_IS_LOGIN_IN_PROGRESS', false)
+        })
+        .catch((error) => {
+            commit('SET_LOGIN_ERROR', 'Could not create an account')
+            commit('SET_IS_LOGIN_IN_PROGRESS', false)
+        })
+    },
+    signIn ({commit}, value) {
+        commit('SET_IS_LOGIN_IN_PROGRESS', true)
+        commit('SET_LOGIN_ERROR', '')
+        firebase.auth().signInWithEmailAndPassword(value.email, value.password)
+        .then((res) => {
+            commit('SET_USER_EMAIL', res.user.email)
+            commit('SET_USER_UID', res.user.uid)
+            commit('SET_IS_ANONYMOUS', false)
+            commit('SET_IS_LOGIN_IN_PROGRESS', false)
+        })
+        .catch((error) => {
+            commit('SET_LOGIN_ERROR', 'The email and password you entered don\'t match')
+            commit('SET_IS_LOGIN_IN_PROGRESS', false)
+        })
     },
     logout ({commit}) {
-        console.log('logout')
-        commit('SET_IS_ANONYMOUS', true)
+        commit('LOGOUT_USER')
     }
 }
 

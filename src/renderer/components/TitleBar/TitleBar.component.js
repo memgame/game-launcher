@@ -36,7 +36,11 @@ function updateGradient () {
     var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
     var color2 = "rgb("+r2+","+g2+","+b2+")";
 
-    document.getElementById('app-title-bar').style.background = "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"
+    var appTitleBar = document.getElementById('app-title-bar')
+
+    if(appTitleBar) {
+        appTitleBar.style.background = "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"
+    }
 
     step += gradientSpeed;
     if ( step >= 1 )
