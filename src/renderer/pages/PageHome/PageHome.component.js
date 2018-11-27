@@ -1,4 +1,4 @@
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'page-home',
@@ -10,12 +10,12 @@ export default {
     }
   },
   computed: {
-
+    ...mapGetters(['getIsGameRunning'])
   },
   mounted() {
 
   },
   methods: {
-    ...mapActions(['downloadNewestGameVersion'])
+    ...mapActions(['downloadNewestGameVersion', 'startGame'])
   }
 }

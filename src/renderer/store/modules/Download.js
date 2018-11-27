@@ -5,7 +5,8 @@ import extractZip from 'extract-zip'
 
 const state = {
     currentGameVersion: null,
-    newestGameVersion: null
+    newestGameVersion: null,
+    isCurrentVersionUpToDate: false
 }
 
 const mutations = {
@@ -14,11 +15,15 @@ const mutations = {
     },
     SET_CURRENT_GAME_VERSION(state, value) {
         state.currentGameVersion = value
+    },
+    SET_IS_CURRENT_VERSION_UP_TO_DATE(state, value) {
+        state.isCurrentVersionUpToDate = value
     }
 }
 
 const actions = {
     downloadNewestGameVersion({ commit, state }) {
+        commit('SET_IS_CURRENT_VERSION_UP_TO_DATE', false)
         var db = firebase.firestore()
         db.collection('gameBuilds').orderBy('version', 'desc').limit(1).get()
             .then(function (querySnapshot) {
@@ -26,10 +31,10 @@ const actions = {
                 querySnapshot.forEach(function (doc) {
                     // doc.data() is never undefined for query doc snapshots
                     var data = doc.data()
-                    commit('SET_NEWEST_GAME_VERSION', 'v' + data.version)
+                    commit('SET_NEWEST_GAME_VERSION', data.version)
                     if (state.currentGameVersion == state.newestGameVersion) {
-                        //Nothing todo since current game version is up to date
                         console.log('GAME UP TO DATE')
+                        commit('SET_IS_CURRENT_VERSION_UP_TO_DATE', true)
                         return;
                     }
                     download(data.windows, 'tmp').then(() => {
@@ -45,7 +50,8 @@ const actions = {
                             (err) => {
                                 if (!err) {
                                     console.log('DONE EXTRACT')
-                                    commit('SET_CURRENT_GAME_VERSION', 'v' + data.version)
+                                    commit('SET_CURRENT_GAME_VERSION', data.version)
+                                    commit('SET_IS_CURRENT_VERSION_UP_TO_DATE', true)
                                 }
                             }
                         )
@@ -63,8 +69,13 @@ const actions = {
     }
 }
 
+const getters = {
+    getIsCurrentVersionUpToDate: (state) => state.isCurrentVersionUpToDate
+}
+
 export default {
     state,
     mutations,
-    actions
+    actions,
+    getters
 }
