@@ -11,9 +11,9 @@ const mutations = {
 }
 
 const actions = {
-    startGame({ commit, getters }) {
+    startGame({ commit, getters, state }) {
         console.log(getters.getIsCurrentVersionUpToDate)
-        if (getters.getIsCurrentVersionUpToDate) {
+        if (getters.getIsCurrentVersionUpToDate && !state.isGameRunning) {
             commit('SET_IS_GAME_RUNNING', true)
             childProcess.exec(process.cwd() + '/game/testBuild.exe', (err) => {
                 console.log(err)

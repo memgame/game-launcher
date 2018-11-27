@@ -6,7 +6,8 @@ import extractZip from 'extract-zip'
 const state = {
     currentGameVersion: null,
     newestGameVersion: null,
-    isCurrentVersionUpToDate: false
+    isCurrentVersionUpToDate: false,
+    downloadProgress: 1
 }
 
 const mutations = {
@@ -18,12 +19,16 @@ const mutations = {
     },
     SET_IS_CURRENT_VERSION_UP_TO_DATE(state, value) {
         state.isCurrentVersionUpToDate = value
+    },
+    SET_DOWNLOAD_PROGRESS(state, value) {
+        state.downloadProgress = value
     }
 }
 
 const actions = {
     downloadNewestGameVersion({ commit, state }) {
         commit('SET_IS_CURRENT_VERSION_UP_TO_DATE', false)
+        commit('SET_DOWNLOAD_PROGRESS', 0)
         var db = firebase.firestore()
         db.collection('gameBuilds').orderBy('version', 'desc').limit(1).get()
             .then(function (querySnapshot) {
@@ -34,10 +39,13 @@ const actions = {
                     commit('SET_NEWEST_GAME_VERSION', data.version)
                     if (state.currentGameVersion == state.newestGameVersion) {
                         console.log('GAME UP TO DATE')
+                        commit('SET_DOWNLOAD_PROGRESS', 1)
                         commit('SET_IS_CURRENT_VERSION_UP_TO_DATE', true)
                         return;
                     }
+                    commit('SET_DOWNLOAD_PROGRESS', 0.2)
                     download(data.windows, 'tmp').then(() => {
+                        commit('SET_DOWNLOAD_PROGRESS', 0.7)
                         console.log('DONE DOWNLOAD')
                         extractZip(
                             'tmp/testBuild.zip',
@@ -51,6 +59,7 @@ const actions = {
                                 if (!err) {
                                     console.log('DONE EXTRACT')
                                     commit('SET_CURRENT_GAME_VERSION', data.version)
+                                    commit('SET_DOWNLOAD_PROGRESS', 1)
                                     commit('SET_IS_CURRENT_VERSION_UP_TO_DATE', true)
                                 }
                             }
