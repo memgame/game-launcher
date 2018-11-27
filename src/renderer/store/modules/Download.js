@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fse from 'fs-extra'
 import firebase from 'firebase'
 import download from 'download'
 import extractZip from 'extract-zip'
@@ -62,6 +62,10 @@ const actions = {
                                     commit('SET_DOWNLOAD_PROGRESS', 1)
                                     commit('SET_IS_CURRENT_VERSION_UP_TO_DATE', true)
                                 }
+                                fse.remove('tmp', (err) => {
+                                    console.log(err)
+                                    console.log('CLEANUP')
+                                })
                             }
                         )
                     })
