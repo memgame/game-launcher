@@ -15,6 +15,10 @@ if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.use(Vuetify)
 Vue.http = Vue.prototype.$http = axios
 Vue.prototype.$firebase = firebase.initializeApp(config.firebase)
+var db = firebase.firestore()
+db.settings({
+  timestampsInSnapshots: true
+})
 Vue.config.productionTip = false
 
 
