@@ -69,7 +69,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['getIsCurrentVersionUpToDate'])
+        ...mapGetters(['getIsCurrentVersionUpToDate', 'getIsGettingNewestGameVersion'])
     },
     mounted() {
 

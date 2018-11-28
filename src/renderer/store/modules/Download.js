@@ -81,7 +81,8 @@ const actions = {
 }
 
 const getters = {
-    getIsCurrentVersionUpToDate: (state) => state.currentGameVersion == state.newestGameVersion
+    getIsCurrentVersionUpToDate: (state) => state.currentGameVersion == state.newestGameVersion,
+    getIsGettingNewestGameVersion: (state) => state.isGettingNewestGameVersion
 }
 
 export default {

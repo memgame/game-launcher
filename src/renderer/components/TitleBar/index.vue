@@ -9,6 +9,19 @@
     >
       Play
     </v-btn>
+    <div v-if="getIsGettingNewestGameVersion">
+      <v-btn
+        small
+        outline
+        :loading="true"
+        color="info"
+      >
+        <span slot="loader" class="custom-loader">
+          <v-icon light>cached</v-icon>
+        </span>
+      </v-btn>
+      Game is currently installing
+    </div>
     <v-spacer></v-spacer>
 
     <v-btn icon class="app-title-bar-btn" @click="minimize">
