@@ -27,52 +27,6 @@ const mutations = {
 }
 
 const actions = {
-    downloadNewestGameVersion({ commit, state }) {
-        var db = firebase.firestore()
-        db.collection('gameBuilds').orderBy('version', 'desc').limit(1).get()
-            .then(function (querySnapshot) {
-                console.log(querySnapshot)
-                querySnapshot.forEach(function (doc) {
-                    // doc.data() is never undefined for query doc snapshots
-                    var data = doc.data()
-                    commit('SET_NEWEST_GAME_VERSION', data.version)
-                    if (state.currentGameVersion == state.newestGameVersion) {
-                        console.log('GAME UP TO DATE')
-                        return;
-                    }
-                    download(data.windows, config.tmpFolderName).then(() => {
-                        console.log('DONE DOWNLOAD')
-                        extractZip(
-                            config.tmpFolderName + '/testBuild.zip',
-                            {
-                                dir: process.cwd() + '/' + config.game.folerName,
-                                onEntry: (entry, zipfile) => {
-                                    console.log('EXTRACT FILE')
-                                }
-                            },
-                            (err) => {
-                                if (!err) {
-                                    console.log('DONE EXTRACT')
-                                    commit('SET_CURRENT_GAME_VERSION', data.version)
-                                }
-                                fse.remove(config.tmpFolderName, (err) => {
-                                    console.log(err)
-                                    console.log('CLEANUP')
-                                })
-                            }
-                        )
-                    })
-                })
-            })
-            .catch(function (error) {
-                console.log("Error getting documents: ", error);
-            })
-
-        console.log('get newest game version')
-        console.log('if no current version download newest version')
-        console.log('compare current and newest game version')
-        console.log('if diffrent download patch for newest version else do nothing')
-    },
     async checkNewestGameVersionAsync({ commit, getters, dispatch }) {
         var db = firebase.firestore()
         await db.collection('gameBuilds').orderBy('version', 'desc').limit(1).get()

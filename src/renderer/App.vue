@@ -19,13 +19,10 @@ export default {
     TitleBar
   },
   created: async function() {
-    console.log("hey app created");
     await this.$store.dispatch("checkNewestGameVersionAsync");
     if (!this.$store.getters.getIsCurrentVersionUpToDate) {
-      console.log("need to update");
       await this.$store.dispatch("downloadNewestGameVersionAsync");
     }
-    console.log("done checking");
   }
 };
 </script>

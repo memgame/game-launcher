@@ -13,6 +13,7 @@
                 v-for="item in items"
                 :key="item.title"
                 @click.stop="item.click"
+                ripple
             >
                 <v-list-tile-action>
                     <v-icon>{{ item.icon }}</v-icon>
