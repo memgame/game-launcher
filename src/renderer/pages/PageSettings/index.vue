@@ -1,6 +1,7 @@
 <template>
 <div>
     <system-information/>
+    <div>{{config}}</div>
 </div>
 </template>
 <script src="./PageSettings.component.js"></script>

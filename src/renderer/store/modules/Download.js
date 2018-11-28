@@ -2,12 +2,13 @@ import fse from 'fs-extra'
 import firebase from 'firebase'
 import download from 'download'
 import extractZip from 'extract-zip'
+import config from '../../../../config/config'
 
 const state = {
     currentGameVersion: null,
     newestGameVersion: null,
-    isCurrentVersionUpToDate: false,
-    downloadProgress: 1
+    newestGameVersionDownloadLink: null,
+    isGettingNewestGameVersion: false
 }
 
 const mutations = {
@@ -17,18 +18,16 @@ const mutations = {
     SET_CURRENT_GAME_VERSION(state, value) {
         state.currentGameVersion = value
     },
-    SET_IS_CURRENT_VERSION_UP_TO_DATE(state, value) {
-        state.isCurrentVersionUpToDate = value
+    SET_NEWEST_GAME_VERSION_DOWNLOAD_LINK(state, value) {
+        state.newestGameVersionDownloadLink = value
     },
-    SET_DOWNLOAD_PROGRESS(state, value) {
-        state.downloadProgress = value
+    SET_IS_GETTING_NEWEST_GAME_VERSION(state, value) {
+        state.isGettingNewestGameVersion = value
     }
 }
 
 const actions = {
     downloadNewestGameVersion({ commit, state }) {
-        commit('SET_IS_CURRENT_VERSION_UP_TO_DATE', false)
-        commit('SET_DOWNLOAD_PROGRESS', 0)
         var db = firebase.firestore()
         db.collection('gameBuilds').orderBy('version', 'desc').limit(1).get()
             .then(function (querySnapshot) {
@@ -39,18 +38,14 @@ const actions = {
                     commit('SET_NEWEST_GAME_VERSION', data.version)
                     if (state.currentGameVersion == state.newestGameVersion) {
                         console.log('GAME UP TO DATE')
-                        commit('SET_DOWNLOAD_PROGRESS', 1)
-                        commit('SET_IS_CURRENT_VERSION_UP_TO_DATE', true)
                         return;
                     }
-                    commit('SET_DOWNLOAD_PROGRESS', 0.2)
-                    download(data.windows, 'tmp').then(() => {
-                        commit('SET_DOWNLOAD_PROGRESS', 0.7)
+                    download(data.windows, config.tmpFolderName).then(() => {
                         console.log('DONE DOWNLOAD')
                         extractZip(
-                            'tmp/testBuild.zip',
+                            config.tmpFolderName + '/testBuild.zip',
                             {
-                                dir: process.cwd() + '/game',
+                                dir: process.cwd() + '/' + config.game.folerName,
                                 onEntry: (entry, zipfile) => {
                                     console.log('EXTRACT FILE')
                                 }
@@ -59,10 +54,8 @@ const actions = {
                                 if (!err) {
                                     console.log('DONE EXTRACT')
                                     commit('SET_CURRENT_GAME_VERSION', data.version)
-                                    commit('SET_DOWNLOAD_PROGRESS', 1)
-                                    commit('SET_IS_CURRENT_VERSION_UP_TO_DATE', true)
                                 }
-                                fse.remove('tmp', (err) => {
+                                fse.remove(config.tmpFolderName, (err) => {
                                     console.log(err)
                                     console.log('CLEANUP')
                                 })
@@ -79,11 +72,62 @@ const actions = {
         console.log('if no current version download newest version')
         console.log('compare current and newest game version')
         console.log('if diffrent download patch for newest version else do nothing')
+    },
+    async checkNewestGameVersionAsync({ commit, getters, dispatch }) {
+        var db = firebase.firestore()
+        await db.collection('gameBuilds').orderBy('version', 'desc').limit(1).get()
+            .then(function (querySnapshot) {
+                console.log(querySnapshot)
+                querySnapshot.forEach(function (doc) {
+                    // doc.data() is never undefined for query doc snapshots
+                    var data = doc.data()
+                    commit('SET_NEWEST_GAME_VERSION', data.version)
+                    //TODO check OS and get download link for the specific OS
+                    commit('SET_NEWEST_GAME_VERSION_DOWNLOAD_LINK', data.windows)
+                })
+            })
+            .catch(function (error) {
+                console.log("Error getting documents: ", error);
+            })
+    },
+    async downloadNewestGameVersionAsync({ state, commit, dispatch }) {
+        commit('SET_IS_GETTING_NEWEST_GAME_VERSION', true)
+        console.log(state.newestGameVersionDownloadLink)
+        await download(state.newestGameVersionDownloadLink, config.tmpFolderName)
+            .then(() => {
+                console.log('DONE DOWNLOAD')
+                dispatch('installNewestGameVersion')
+            })
+            .catch(() => {
+                commit('SET_IS_GETTING_NEWEST_GAME_VERSION', false)
+            })
+    },
+    installNewestGameVersion({ state, commit }) {
+        extractZip(
+            config.tmpFolderName + '/' + config.game.zipFileName,
+            {
+                dir: process.cwd() + '/' + config.game.folerName,
+                onEntry: (entry, zipfile) => {
+                    console.log('EXTRACT FILE')
+                }
+            },
+            (err) => {
+                if (!err) {
+                    console.log('DONE EXTRACT')
+                    commit('SET_CURRENT_GAME_VERSION', state.newestGameVersion)
+                }
+                fse.remove(config.tmpFolderName, (err) => {
+                    console.log(err)
+                    console.log('CLEANUP')
+                    commit('SET_IS_GETTING_NEWEST_GAME_VERSION', false)
+                })
+            }
+        )
     }
 }
 
 const getters = {
-    getIsCurrentVersionUpToDate: (state) => state.isCurrentVersionUpToDate
+    getIsCurrentVersionUpToDate: (state) => state.currentGameVersion == state.newestGameVersion
 }
 
 export default {

@@ -1,5 +1,5 @@
 import { remote } from 'electron'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 
 var colors = new Array(
@@ -69,13 +69,13 @@ export default {
         }
     },
     computed: {
-
+        ...mapGetters(['getIsCurrentVersionUpToDate'])
     },
     mounted() {
 
     },
     methods: {
-        ...mapActions(['downloadNewestGameVersion', 'startGame']),
+        ...mapActions(['startGame']),
         play() {
             console.log('play')
             this.$router.push('play')

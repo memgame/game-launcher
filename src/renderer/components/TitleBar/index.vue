@@ -1,6 +1,11 @@
 <template>
   <v-toolbar id="app-title-bar" height="40" app fixed clipped-left>
-    <v-btn icon class="app-title-bar-btn" @click="startGame" v-if="$route.path != '/login'">
+    <v-btn
+      icon
+      class="app-title-bar-btn"
+      @click="startGame"
+      v-if="$route.path != '/login' && getIsCurrentVersionUpToDate"
+    >
       <v-icon>play_arrow</v-icon>
     </v-btn>
     <v-spacer></v-spacer>

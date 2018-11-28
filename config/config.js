@@ -6,5 +6,13 @@ export default {
         projectId: "game-launcher-1439e",
         storageBucket: "game-launcher-1439e.appspot.com",
         messagingSenderId: "148629216769"
-    }
+    },
+    game: {
+        folerName: 'game',
+        windows: {
+            startfile: 'testBuild.exe'
+        },
+        zipFileName: 'testBuild.zip'
+    },
+    tmpFolderName: 'tmp'
 }
