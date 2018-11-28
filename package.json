@@ -1,6 +1,6 @@
 {
   "name": "game-launcher",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "author": "Wenish <jonas.voland@bluewin.ch>",
   "description": "A game launcher for BroProducts",
   "license": null,
@@ -17,8 +17,8 @@
     "postinstall": ""
   },
   "build": {
-    "productName": "game-launcher",
-    "appId": "com.broproducts.gamelauncher",
+    "productName": "BroProducts Launcher",
+    "appId": "com.broproducts.launcher",
     "directories": {
       "output": "build"
     },
@@ -52,6 +52,10 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "download": "^7.1.0",
+    "extract-zip": "^1.6.7",
+    "firebase": "^5.5.8",
+    "fs-extra": "^7.0.1",
     "material-design-icons-iconfont": "^4.0.2",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
