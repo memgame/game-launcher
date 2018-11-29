@@ -1,8 +1,12 @@
 import { mapGetters } from 'vuex'
 
+import Flag from "@/components/Flag";
+
 export default {
   name: 'page-home',
-  components: {},
+  components: {
+    Flag
+  },
   props: [],
   data() {
     return {
