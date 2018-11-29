@@ -1,8 +1,8 @@
 <template>
   <v-toolbar id="app-title-bar" height="40" app fixed clipped-left>
     <v-btn
-      class="app-title-bar-btn"
-      outline
+      class="app-title-bar-btn btn-play font-weight-bold body-2"
+      flat
       small
       @click="startGame"
       v-if="$route.path != '/login' && getIsCurrentVersionUpToDate"
