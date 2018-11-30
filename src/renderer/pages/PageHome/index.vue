@@ -1,15 +1,27 @@
 <template>
-  <div>Home how
-    <v-layout row wrap>
-      <v-flex xs9>
-        <div>{{$route.path}}</div>
-        Is game Running: {{getIsGameRunning}}
-      </v-flex>
-      <v-flex xs3>
+  <v-layout row wrap justify-space-around>
+    <v-flex xs9>
+      <v-container>
+        <p class="text-xs-center title">Name</p>
+        <v-layout align-center justify-center row fill-height>
+          <v-flex xs1>
+              <div class="text-xs-center title">10</div>
+          </v-flex>
+          <v-flex xs10>
+            <v-progress-linear v-model="valueDeterminate" class="level-progress"></v-progress-linear>
+          </v-flex>
+          <v-flex xs1>
+              <div class="text-xs-center title">11</div>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-flex>
+    <v-flex xs3>
+      <v-container>
         <flag/>
-      </v-flex>
-    </v-layout>
-  </div>
+      </v-container>
+    </v-flex>
+  </v-layout>
 </template>
 <script src="./PageHome.component.js"></script>
-<style src="./PageHome.component.css" lang="css"></style>
+<style src="./PageHome.component.css" lang="css" scoped></style>

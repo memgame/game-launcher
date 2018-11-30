@@ -1,5 +1,3 @@
-import { mapGetters } from 'vuex'
-
 import Flag from "@/components/Flag";
 
 export default {
@@ -10,11 +8,11 @@ export default {
   props: [],
   data() {
     return {
-
+      valueDeterminate: 63
     }
   },
   computed: {
-    ...mapGetters(['getIsGameRunning'])
+
   },
   mounted() {
 
