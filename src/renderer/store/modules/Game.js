@@ -12,8 +12,9 @@ const mutations = {
 }
 
 const actions = {
-    startGame({ commit, getters, state }) {
+    async startGameAsync({ commit, getters, state, dispatch }) {
         console.log(getters.getIsCurrentVersionUpToDate)
+        await dispatch('checkNewestGameVersionAsync')
         if (getters.getIsCurrentVersionUpToDate && !state.isGameRunning) {
             commit('SET_IS_GAME_RUNNING', true)
             childProcess.exec(process.cwd() + '/' + config.game.folerName + '/' + config.game[process.platform].startfile, (err) => {

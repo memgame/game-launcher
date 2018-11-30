@@ -4,7 +4,7 @@
       class="app-title-bar-btn btn-play font-weight-bold body-2"
       flat
       small
-      @click="startGame"
+      @click="startGameAsync"
       v-if="$route.path != '/login' && getIsCurrentVersionUpToDate"
     >
       Play
