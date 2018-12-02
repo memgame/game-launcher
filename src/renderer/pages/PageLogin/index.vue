@@ -18,7 +18,7 @@
                 ></v-text-field>
             </v-flex>
         </v-layout>
-        <v-btn color="info" @click="trysignIn">Sign In</v-btn>
+        <v-btn color="info" @click="trySignIn">Sign In</v-btn>
         <v-btn color="error" @click="trySignUp">Sign Up</v-btn>
         <div>{{$route.path}}</div>
     </div>

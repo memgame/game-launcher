@@ -31,7 +31,7 @@ export default {
         password: this.password
       })
     },
-    trysignIn () {
+    trySignIn () {
       this.signIn({
         email: this.email,
         password: this.password

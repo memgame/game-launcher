@@ -26,6 +26,9 @@ const mutations = {
     SET_USER_UID (state, value) {
         state.uid = value
     },
+    SET_DISPLAY_NAME (state, value) {
+        state.displayName = value
+    },
     LOGOUT_USER (state) {
         state.isAnonymous = true
         state.displayName = null
@@ -47,6 +50,7 @@ const actions = {
         .then((res) => {
             commit('SET_USER_EMAIL', res.user.email)
             commit('SET_USER_UID', res.user.uid)
+            commit('SET_DISPLAY_NAME', res.user.displayName)
             commit('SET_IS_ANONYMOUS', false)
             commit('SET_IS_LOGIN_IN_PROGRESS', false)
         })
@@ -62,6 +66,7 @@ const actions = {
         .then((res) => {
             commit('SET_USER_EMAIL', res.user.email)
             commit('SET_USER_UID', res.user.uid)
+            commit('SET_DISPLAY_NAME', res.user.displayName)
             commit('SET_IS_ANONYMOUS', false)
             commit('SET_IS_LOGIN_IN_PROGRESS', false)
         })
@@ -72,12 +77,36 @@ const actions = {
     },
     logout ({commit}) {
         commit('LOGOUT_USER')
+    },
+    changeDisplayName({commit, getters}, value) {
+        if(getters.getDisplayNameRaw != value) {
+            firebase.auth().currentUser.updateProfile({
+                displayName: value
+            }).then(() => {
+                commit('SET_DISPLAY_NAME', value)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        }
+    }
+}
+
+const getters = {
+    getDisplayNameRaw: (state) => state.displayName,
+    getDisplayName: (state, getters) => {
+        var displayNameRaw = getters.getDisplayNameRaw
+        var displayName = !!displayNameRaw
+        ? displayNameRaw
+        : 'Anonymous'
+        return displayName
     }
 }
 
 export default {
     state,
     mutations,
-    actions
+    actions,
+    getters
 }
   
