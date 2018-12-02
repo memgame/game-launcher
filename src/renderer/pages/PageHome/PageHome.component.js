@@ -1,11 +1,11 @@
 import Flag from "@/components/Flag";
-import Username from "@/components/Username";
+import DisplayName from "@/components/DisplayName";
 
 export default {
   name: 'page-home',
   components: {
     Flag,
-    Username
+    DisplayName
   },
   props: [],
   data() {

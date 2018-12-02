@@ -1,5 +1,5 @@
 <template>
-    <div class="username-container">
+    <div class="display-name-container">
         <div v-if="!isInEditModus">
             <p class="text-xs-center title">
                 {{getDisplayName}}
@@ -31,5 +31,5 @@
         </div>
     </div>
 </template>
-<script src="./Username.component.js"></script>
-<style src="./Username.component.css" lang="css" scoped></style>
+<script src="./DisplayName.component.js"></script>
+<style src="./DisplayName.component.css" lang="css" scoped></style>

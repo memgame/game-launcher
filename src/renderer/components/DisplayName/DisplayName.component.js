@@ -1,7 +1,7 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-    name: 'username',
+    name: 'display-name',
     components: { },
     props: [],
     data () {
