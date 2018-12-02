@@ -2,7 +2,7 @@
   <v-layout row wrap justify-space-around>
     <v-flex xs9>
       <v-container>
-        <p class="text-xs-center title">Name</p>
+        <Username/>
         <v-layout align-center justify-center row fill-height>
           <v-flex xs1>
               <div class="text-xs-center title">10</div>
