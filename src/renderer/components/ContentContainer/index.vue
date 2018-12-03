@@ -1,6 +1,6 @@
 <template>
     <v-content>
-        <v-container class="container" fluid>
+        <v-container class="container" fluid pa-0>
             <router-view></router-view>
         </v-container>
     </v-content>

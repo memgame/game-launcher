@@ -1,12 +1,21 @@
+.background {
+    width: 100%;
+    height: 100%;
+    background-image: url("~@/assets/backgroundXayah.jpg");
+    background-position-x: -100px;
+    background-size: cover; 
+    box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
+}
+
 .custom-loader {
     animation: loader 1s infinite;
 }
 
 @keyframes loader {
-from {
-    transform: rotate(0);
-}
-to {
-    transform: rotate(360deg);
-}
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
