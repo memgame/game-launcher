@@ -14,6 +14,7 @@
           </v-flex>
           <v-flex xs10>
             <div v-if="!User.isLoginInProgress">
+              <p class="red--text text--darken-4">{{User.loginError}}</p>
               <v-text-field label="Email" v-model="email"></v-text-field>
               <v-text-field
                 label="Password"
@@ -26,7 +27,7 @@
                 @click:append="showPassword = !showPassword"
               ></v-text-field>
               <v-btn color="info" @click="trySignIn">Sign In</v-btn>
-              <v-btn color="error" @click="trySignUp">Sign Up</v-btn>
+              <v-btn flat color="error" @click="trySignUp">Sign Up</v-btn>
             </div>
             <div v-if="User.isLoginInProgress">
               <v-icon class="custom-loader">cached</v-icon>
