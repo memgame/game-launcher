@@ -17,7 +17,7 @@
       </v-container>
     </v-flex>
     <v-flex xs3>
-      <v-container>
+      <v-container pa-0>
         <v-layout align-center justify-center row fill-height>
           <v-flex xs12>
             <flag/>
