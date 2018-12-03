@@ -18,7 +18,7 @@
         <v-btn color="error" @click="trySignUp">Sign Up</v-btn>
       </div>
       <div v-if="User.isLoginInProgress">
-        <v-icon>cached</v-icon>
+        <v-icon class="custom-loader">cached</v-icon>
       </div>
     </v-flex>
   </v-layout>

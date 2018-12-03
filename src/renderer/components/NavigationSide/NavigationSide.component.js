@@ -32,11 +32,6 @@ export default {
           title: 'Logout',
           icon: 'highlight_off',
           click: () => this.$router.push('logout')
-        },
-        {
-          title: 'Download',
-          icon: 'cloud_download',
-          click: () => {}
         }
       ]
     }
