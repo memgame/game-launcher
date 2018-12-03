@@ -21,6 +21,10 @@
   margin-left: -10px;
 }
 
+.btn-play::before {
+  background-color: transparent;
+}
+
 .btn-play::after {
   position: absolute;
   top: 0;
