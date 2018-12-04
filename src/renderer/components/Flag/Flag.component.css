@@ -1,20 +1,35 @@
 .flag-container {
-    filter: drop-shadow(0 0 5px black);
-    width: 160px;
-    height: 300px;
-    margin: auto;
-  }
-  
-  .flag {
-    background: linear-gradient(to bottom, #22282d 0%,#001b30 100%);
-    width: 100%;
-    height: 100%;
-    clip-path: polygon(
-      100% 0,
-      100% 100%,
-      75% calc(100% - 25px),
-      50% 100%,
-      25% calc(100% - 25px),
-      0 100%,
-      0 0);
-  }
+  filter: drop-shadow(0 0 5px black);
+  width: 160px;
+  height: 300px;
+  margin: auto;
+  position: relative;
+}
+
+.flag {
+  background: linear-gradient(to bottom, #22282d 0%,#001b30 100%);
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(
+    100% 0,
+    100% 100%,
+    75% calc(100% - 25px),
+    50% 100%,
+    25% calc(100% - 25px),
+    0 100%,
+    0 0);
+}
+
+.layers > img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  width: 100px;
+}
+
+.layers > img{
+  filter: invert(.5) sepia(1) saturate(5) hue-rotate(175deg);
+}
