@@ -75,7 +75,7 @@ export default {
 
     },
     methods: {
-        ...mapActions(['startGame']),
+        ...mapActions(['startGameAsync']),
         play() {
             console.log('play')
             this.$router.push('play')

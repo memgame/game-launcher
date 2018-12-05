@@ -1,0 +1,34 @@
+.background {
+    width: 100%;
+    height: 100%;
+    background-image: url("~@/assets/backgroundXayah.jpg");
+    background-position-x: -100px;
+    background-size: cover; 
+    box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
+    animation: backgroundAnim 5s linear infinite;
+}
+
+.custom-loader {
+    animation: loader 1s infinite;
+}
+
+@keyframes loader {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes backgroundAnim {
+    0% {
+        filter: contrast(107%) saturate(105%) hue-rotate(0deg);
+    }
+    50% {
+        filter: contrast(120%) saturate(105%) hue-rotate(5deg);
+    }
+    100% {
+        filter: contrast(107%) saturate(105%) hue-rotate(0deg);
+    }
+}

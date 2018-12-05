@@ -1,10 +1,10 @@
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'page-login',
-  components: { },
+  components: {},
   props: [],
-  data () {
+  data() {
     return {
       email: 'test@test.com',
       password: 'haha1234',
@@ -18,31 +18,32 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['getIsLoginInProgress']),
     ...mapState(['User'])
   },
-  mounted () {
-      
+  mounted() {
+
   },
   methods: {
     ...mapActions(['signIn', 'signUp']),
-    trySignUp () {
+    trySignUp() {
       this.signUp({
         email: this.email,
         password: this.password
       })
     },
-    trysignIn () {
+    trySignIn() {
       this.signIn({
         email: this.email,
         password: this.password
       })
     },
-    hasNumber (myString) {
+    hasNumber(myString) {
       return /\d/.test(myString);
     }
   },
   watch: {
-    'User.isAnonymous' (val) {
+    'User.isAnonymous'(val) {
       if (!val) {
         if (this.$router.currentRoute.query.redirect) {
           this.$router.push(this.$router.currentRoute.query.redirect)

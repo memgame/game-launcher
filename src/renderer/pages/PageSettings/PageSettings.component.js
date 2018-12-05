@@ -1,3 +1,4 @@
+import { mapGetters } from 'vuex'
 import SystemInformation from '@/components/SystemInformation'
 import config from '../../../../config/config'
 
@@ -11,7 +12,7 @@ export default {
     }
   },
   computed: {
-
+    ...mapGetters(['getIsGameRunning'])
   },
   mounted() {
 

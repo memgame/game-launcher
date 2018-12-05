@@ -37,7 +37,8 @@ const actions = {
                     var data = doc.data()
                     commit('SET_NEWEST_GAME_VERSION', data.version)
                     //TODO check OS and get download link for the specific OS
-                    commit('SET_NEWEST_GAME_VERSION_DOWNLOAD_LINK', data.windows)
+                    console.log(data[process.platform])
+                    commit('SET_NEWEST_GAME_VERSION_DOWNLOAD_LINK', data[process.platform])
                 })
             })
             .catch(function (error) {

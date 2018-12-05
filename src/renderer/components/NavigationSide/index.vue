@@ -7,6 +7,7 @@
         app
         clipped
         width="200"
+        class="navigation-side"
     >
         <v-list>
             <v-list-tile
@@ -27,4 +28,4 @@
     </v-navigation-drawer>
 </template>
 <script src="./NavigationSide.component.js"></script>
-<style src="./NavigationSide.component.css" lang="css"></style>
+<style src="./NavigationSide.component.css" lang="css" scoped></style>

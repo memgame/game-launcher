@@ -12,11 +12,15 @@ const mutations = {
 }
 
 const actions = {
-    startGame({ commit, getters, state }) {
+    async startGameAsync({ commit, getters, state, dispatch }) {
         console.log(getters.getIsCurrentVersionUpToDate)
+        await dispatch('checkNewestGameVersionAsync')
+        if(!getters.getIsCurrentVersionUpToDate) {
+            await dispatch("downloadNewestGameVersionAsync");
+        }
         if (getters.getIsCurrentVersionUpToDate && !state.isGameRunning) {
             commit('SET_IS_GAME_RUNNING', true)
-            childProcess.exec(process.cwd() + '/' + config.game.folerName + '/' + config.game.windows.startfile, (err) => {
+            childProcess.exec(process.cwd() + '/' + config.game.folerName + '/' + config.game[process.platform].startfile, (err) => {
                 console.log(err)
                 console.log('hallo')
                 commit('SET_IS_GAME_RUNNING', false)

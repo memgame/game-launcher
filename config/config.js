@@ -9,8 +9,11 @@ export default {
     },
     game: {
         folerName: 'game',
-        windows: {
+        win32: {
             startfile: 'testBuild.exe'
+        },
+        darwin: {
+            startfile: 'testBuild.app/Contents/MacOS/osx'
         },
         zipFileName: 'testBuild.zip'
     },
