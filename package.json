@@ -3,7 +3,7 @@
   "version": "1.0.4",
   "author": "Wenish <jonas.voland@bluewin.ch>",
   "description": "A game launcher for BroProducts",
-  "license": null,
+  "license": "ISC",
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
