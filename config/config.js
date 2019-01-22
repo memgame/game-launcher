@@ -13,7 +13,7 @@ export default {
             startfile: 'mem-client-game.exe'
         },
         darwin: {
-            startfile: 'mem-client-game.app/Contents/MacOS/osx'
+            startfile: 'mem-client-game.app/Contents/MacOS/mem-client-game'
         },
         zipFileName: 'mem-client-game.zip'
     },

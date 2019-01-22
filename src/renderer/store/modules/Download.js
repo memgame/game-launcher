@@ -53,7 +53,8 @@ const actions = {
                 console.log('DONE DOWNLOAD')
                 dispatch('installNewestGameVersion')
             })
-            .catch(() => {
+            .catch((err) => {
+                alert(err)
                 commit('SET_IS_GETTING_NEWEST_GAME_VERSION', false)
             })
     },
@@ -76,6 +77,7 @@ const actions = {
                     console.log('CLEANUP')
                     commit('SET_IS_GETTING_NEWEST_GAME_VERSION', false)
                 })
+                alert(err)
             }
         )
     }
