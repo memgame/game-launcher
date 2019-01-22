@@ -7,6 +7,15 @@ const state = {
 }
 
 const mutations = {
+    updateServerIp (state, value) {
+        state.serverIp = value
+    },
+    updatePort (state, value) {
+        state.port = value
+    },
+    updateRoomName (state, value) {
+        state.roomName = value
+    }
 }
 
 const actions = {

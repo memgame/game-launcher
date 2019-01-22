@@ -3,6 +3,7 @@
     <v-flex xs9>
       <v-container>
         <display-name/>
+        <!--
         <v-layout align-center justify-center row fill-height>
           <v-flex xs1>
               <div class="text-xs-center title">10</div>
@@ -14,6 +15,7 @@
               <div class="text-xs-center title">11</div>
           </v-flex>
         </v-layout>
+        -->
       </v-container>
     </v-flex>
     <v-flex xs3>
@@ -23,11 +25,13 @@
             <flag/>
           </v-flex>
         </v-layout>
+        <!--
         <v-layout align-center justify-center row fill-height>
           <v-flex xs12 text-xs-center>
             <v-btn flat small>Edit</v-btn>
           </v-flex>
         </v-layout>
+        -->
       </v-container>
     </v-flex>
   </v-layout>
