@@ -17,5 +17,10 @@ export default {
         },
         zipFileName: 'testBuild.zip'
     },
-    tmpFolderName: 'tmp'
+    tmpFolderName: 'tmp',
+    server: {
+        ip: 'localhost',
+        port: '8080',
+        roomName: 'match'
+    }
 }
