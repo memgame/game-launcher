@@ -61,7 +61,7 @@ const actions = {
         extractZip(
             config.tmpFolderName + '/' + config.game.zipFileName,
             {
-                dir: process.cwd() + '/' + config.game.folerName,
+                dir: process.cwd() + '/' + config.game.folderName,
                 onEntry: (entry, zipfile) => {
                     console.log('EXTRACT FILE')
                 }
