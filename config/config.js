@@ -10,12 +10,17 @@ export default {
     game: {
         folerName: 'game',
         win32: {
-            startfile: 'testBuild.exe'
+            startfile: 'mem-client-game.exe'
         },
         darwin: {
-            startfile: 'testBuild.app/Contents/MacOS/osx'
+            startfile: 'mem-client-game.app/Contents/MacOS/osx'
         },
-        zipFileName: 'testBuild.zip'
+        zipFileName: 'mem-client-game.zip'
     },
-    tmpFolderName: 'tmp'
+    tmpFolderName: 'tmp',
+    server: {
+        ip: 'localhost',
+        port: '8080',
+        roomName: 'match'
+    }
 }
