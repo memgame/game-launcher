@@ -6,8 +6,8 @@ export default {
   props: [],
   data() {
     return {
-      email: 'test@test.com',
-      password: 'haha1234',
+      email: '',
+      password: '',
       showPassword: false,
       rules: {
         required: value => !!value || 'Required.',

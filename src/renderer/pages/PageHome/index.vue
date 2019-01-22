@@ -16,6 +16,7 @@
           </v-flex>
         </v-layout>
         -->
+        <p>Welcome to the Alpha</p>
       </v-container>
     </v-flex>
     <v-flex xs3>
