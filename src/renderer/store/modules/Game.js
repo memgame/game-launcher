@@ -18,14 +18,16 @@ const actions = {
         if(!getters.getIsCurrentVersionUpToDate) {
             await dispatch("downloadNewestGameVersionAsync");
         }
-        if (getters.getIsCurrentVersionUpToDate && !state.isGameRunning) {
+        if (getters.getIsCurrentVersionUpToDate) {
             commit('SET_IS_GAME_RUNNING', true)
-            childProcess.exec(config.rootFolder + '/' + config.game.folderName + '/' + config.game[process.platform].startfile, (err) => {
+            var gamePath = config.rootFolder + '/' + config.game.folderName + '/' + config.game[process.platform].startfile
+            var command = `${gamePath} -serverip ${getters.getServerIp} -serverport ${getters.getPort} -roomname ${getters.getRoomName}`
+            alert(command, 'start command')
+            childProcess.exec(command, (err) => {
                 if(err) {
                     alert(err)
                 }
                 console.log(err)
-                console.log('hallo')
                 commit('SET_IS_GAME_RUNNING', false)
             })
         }
