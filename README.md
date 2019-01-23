@@ -1,5 +1,8 @@
 # game-launcher
 
+[![Build Status](https://travis-ci.org/memgame/game-launcher.svg?branch=master)](https://travis-ci.org/memgame/game-launcher)
+[![Build status](https://ci.appveyor.com/api/projects/status/lamb4a56u88tqe2q/branch/master?svg=true)](https://ci.appveyor.com/project/Wenish/game-launcher-1cvbf/branch/master)
+
 > A game launcher for BroProducts
 
 #### Build Setup
