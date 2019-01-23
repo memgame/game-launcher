@@ -20,7 +20,10 @@ const actions = {
         }
         if (getters.getIsCurrentVersionUpToDate && !state.isGameRunning) {
             commit('SET_IS_GAME_RUNNING', true)
-            childProcess.exec(process.cwd() + '/' + config.game.folderName + '/' + config.game[process.platform].startfile, (err) => {
+            childProcess.exec(config.rootFolder + '/' + config.game.folderName + '/' + config.game[process.platform].startfile, (err) => {
+                if(err) {
+                    alert(err)
+                }
                 console.log(err)
                 console.log('hallo')
                 commit('SET_IS_GAME_RUNNING', false)

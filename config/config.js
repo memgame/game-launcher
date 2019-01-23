@@ -1,3 +1,5 @@
+import os from 'os'
+
 export default {
     firebase: {
         apiKey: "AIzaSyBjLeNuaiLRCjYAehwq6sJKSCMxM312VIA",
@@ -7,6 +9,7 @@ export default {
         storageBucket: "game-launcher-1439e.appspot.com",
         messagingSenderId: "148629216769"
     },
+    rootFolder: os.homedir() + '/mem',
     game: {
         folderName: 'game',
         win32: {
