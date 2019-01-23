@@ -1,3 +1,5 @@
+import os from 'os'
+
 export default {
     firebase: {
         apiKey: "AIzaSyBjLeNuaiLRCjYAehwq6sJKSCMxM312VIA",
@@ -7,13 +9,14 @@ export default {
         storageBucket: "game-launcher-1439e.appspot.com",
         messagingSenderId: "148629216769"
     },
+    rootFolder: os.homedir() + '/mem',
     game: {
-        folerName: 'game',
+        folderName: 'game',
         win32: {
             startfile: 'mem-client-game.exe'
         },
         darwin: {
-            startfile: 'mem-client-game.app/Contents/MacOS/osx'
+            startfile: 'mem-client-game.app/Contents/MacOS/mem-client-game'
         },
         zipFileName: 'mem-client-game.zip'
     },

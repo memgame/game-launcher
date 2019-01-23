@@ -3,6 +3,7 @@ import firebase from 'firebase'
 import download from 'download'
 import extractZip from 'extract-zip'
 import config from '../../../../config/config'
+import os from 'os'
 
 const state = {
     currentGameVersion: null,
@@ -53,7 +54,8 @@ const actions = {
                 console.log('DONE DOWNLOAD')
                 dispatch('installNewestGameVersion')
             })
-            .catch(() => {
+            .catch((err) => {
+                alert(err)
                 commit('SET_IS_GETTING_NEWEST_GAME_VERSION', false)
             })
     },
@@ -61,7 +63,7 @@ const actions = {
         extractZip(
             config.tmpFolderName + '/' + config.game.zipFileName,
             {
-                dir: process.cwd() + '/' + config.game.folerName,
+                dir: config.rootFolder + '/' + config.game.folderName,
                 onEntry: (entry, zipfile) => {
                     console.log('EXTRACT FILE')
                 }
@@ -76,6 +78,9 @@ const actions = {
                     console.log('CLEANUP')
                     commit('SET_IS_GETTING_NEWEST_GAME_VERSION', false)
                 })
+                if(err) {
+                    alert(err)
+                }
             }
         )
     }
