@@ -55,8 +55,8 @@ const actions = {
                 dispatch('installNewestGameVersion')
             })
             .catch((err) => {
-                alert(err)
                 commit('SET_IS_GETTING_NEWEST_GAME_VERSION', false)
+                alert(err)
             })
     },
     installNewestGameVersion({ state, commit }) {
