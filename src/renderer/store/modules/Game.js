@@ -21,7 +21,7 @@ const actions = {
         if (getters.getIsCurrentVersionUpToDate) {
             commit('SET_IS_GAME_RUNNING', true)
             var gamePath = config.rootFolder + '/' + config.game.folderName + '/' + config.game[process.platform].startfile
-            var command = `${gamePath} -serverip ${getters.getServerIp} -serverport ${getters.getPort} -roomname ${getters.getRoomName}`
+            var command = `"${gamePath}" -serverip ${getters.getServerIp} -serverport ${getters.getPort} -roomname ${getters.getRoomName}`
             alert(command, 'start command')
             childProcess.exec(command, (err) => {
                 if(err) {
