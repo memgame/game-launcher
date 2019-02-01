@@ -15,6 +15,11 @@ const mutations = {
     },
     updateRoomName (state, value) {
         state.roomName = value
+    },
+    resetServerSettings (state) {
+        state.serverIp = config.server.ip
+        state.port = config.server.port
+        state.roomName = config.server.roomName
     }
 }
 

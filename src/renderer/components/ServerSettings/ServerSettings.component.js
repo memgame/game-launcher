@@ -1,4 +1,4 @@
-import { mapGetters } from 'vuex'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'server-settings',
@@ -34,6 +34,6 @@ export default {
 
   },
   methods: {
-
+      ...mapMutations(['resetServerSettings'])
   }
 }
