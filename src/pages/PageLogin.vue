@@ -47,9 +47,6 @@
   </q-page>
 </template>
 
-<style>
-</style>
-
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
 

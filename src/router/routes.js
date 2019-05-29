@@ -5,14 +5,20 @@ const routes = [
     component: () => import('layouts/LayoutMain.vue'),
     children: [
       { path: '', component: () => import('pages/PageHome.vue') }
-    ]
+    ],
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/store',
     component: () => import('layouts/LayoutMain.vue'),
     children: [
       { path: '', component: () => import('pages/PageStore.vue') }
-    ]
+    ],
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/settings',

@@ -69,6 +69,9 @@ const actions = {
                 commit('SET_DISPLAY_NAME', res.user.displayName)
                 commit('SET_IS_ANONYMOUS', false)
                 commit('SET_IS_LOGIN_IN_PROGRESS', false)
+                res.user.getIdToken().then((token) => {
+                    commit('SET_USER_TOKEN', token)
+                })
             })
             .catch((error) => {
                 commit('SET_LOGIN_ERROR', 'The email and password you entered don\'t match')
@@ -76,6 +79,7 @@ const actions = {
             })
     },
     logout({ commit }) {
+        firebase.auth().signOut()
         commit('LOGOUT_USER')
     },
     changeDisplayName({ commit, getters }, value) {

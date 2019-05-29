@@ -8,7 +8,7 @@
         dense
         flat
         @click="() => {}"
-        class="btn-play q-electron-drag--exception"
+        class="q-electron-drag--exception btn-play"
         label="Play"
         v-if="$route.path != '/login'"
       />
