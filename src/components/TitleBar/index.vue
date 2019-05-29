@@ -7,6 +7,7 @@
         @click="() => {}"
         class="btn-play q-electron-drag--exception"
         label="Play"
+        v-if="$route.path != '/login'"
       />
       <q-space />
 
