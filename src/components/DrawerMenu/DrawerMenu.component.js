@@ -10,13 +10,11 @@ export default {
                   icon: 'home',
                   click: () => this.$router.push('home')
                 },
-                /*
                 { 
                   title: 'Store',
                   icon: 'store',
                   click: () => this.$router.push('store')
                 },
-                */
                 { 
                   title: 'Settings',
                   icon: 'settings',

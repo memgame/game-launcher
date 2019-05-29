@@ -15,10 +15,14 @@ function createWindow () {
    * Initial window options
    */
   mainWindow = new BrowserWindow({
-    width: 1000,
-    height: 600,
+    height: 576,
     useContentSize: true,
-    frame: false
+    width: 1024,
+    minHeight: 534,
+    minWidth: 1024,
+    frame: false,
+    resizable: false,
+    maximizable: false
   })
 
   mainWindow.loadURL(process.env.APP_URL)

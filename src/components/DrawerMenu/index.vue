@@ -15,7 +15,13 @@
       >
         <q-scroll-area class="fit">
           <q-list padding>
-            <q-item clickable v-ripple v-for="item in items" :key="item.title">
+            <q-item
+              v-for="item in items"
+              :key="item.title"
+              @click.stop="item.click"
+              clickable
+              v-ripple
+            >
               <q-item-section avatar>
                 <q-icon :name="item.icon" />
               </q-item-section>
