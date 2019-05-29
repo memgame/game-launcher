@@ -54,7 +54,6 @@ function updateGradient() {
 }
 
 var gradientInterval = setInterval(updateGradient, 30);
-console.log('hey')
 
 export default {
   name: 'title-bar',

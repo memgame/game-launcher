@@ -10,8 +10,8 @@
     :breakpoint="500"
     show-if-above
     behavior="desktop"
-    bordered
-    content-class="bg-grey-3"
+    elevated
+    content-class="bg-grey-10 text-white"
   >
     <q-scroll-area class="fit">
       <q-list padding>

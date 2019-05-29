@@ -43,7 +43,9 @@ module.exports = function (ctx) {
         'QScrollArea',
         'QSeparator',
         'QBar',
-        'QSpace'
+        'QSpace',
+        'QSpinnerPuff',
+        'QInput'
       ],
 
       directives: [

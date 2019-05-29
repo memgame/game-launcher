@@ -1,5 +1,8 @@
 <template>
-  <q-header id="app-title-bar" bordered class="bg-primary text-white q-electron-drag">
+  <q-header
+    id="app-title-bar"
+    bordered
+    class="text-white q-electron-drag">
     <q-toolbar>
       <q-btn
         dense
@@ -20,6 +23,10 @@
 <script src="./TitleBar.component.js" />
 
 <style lang="stylus" scoped>
+.q-toolbar {
+    min-height: 40px;
+}
+
 .btn-play {
   padding: 3px 30px 3px 20px
 }
