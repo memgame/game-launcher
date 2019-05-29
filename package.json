@@ -7,6 +7,8 @@
   "author": "Wenish <wenish@noreply.github.com>",
   "private": true,
   "scripts": {
+    "dev": "quasar dev -m electron",
+    "build": "quasar build -m electron",
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
