@@ -1,25 +1,3 @@
-# game-launcher
+# Quasar App
 
-[![Build Status](https://travis-ci.org/memgame/game-launcher.svg?branch=master)](https://travis-ci.org/memgame/game-launcher)
-[![Build status](https://ci.appveyor.com/api/projects/status/lamb4a56u88tqe2q/branch/master?svg=true)](https://ci.appveyor.com/project/Wenish/game-launcher-1cvbf/branch/master)
-
-> A game launcher for BroProducts
-
-#### Build Setup
-
-``` bash
-# install dependencies
-npm install --runtime=electron --target=2.0.0
-
-# serve with hot reload at localhost:9080
-npm run dev
-
-# build electron application for production
-npm run build
-
-
-```
-
----
-
-This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
+> WIP
