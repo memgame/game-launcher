@@ -36,19 +36,7 @@ const routes = [
   },
   {
     path: '/logout',
-    name: 'Logout',
-    beforeEnter: (to, from, next) => {
-      next('/login')
-      /*
-      if (!store.state.User.isAnonymous) {
-        firebase.auth().signOut()
-        store.dispatch('logout')
-        next('login')
-      } else {
-        next('/login')
-      }
-      */
-    }
+    name: 'Logout'
   },
   {
     path: '*',
