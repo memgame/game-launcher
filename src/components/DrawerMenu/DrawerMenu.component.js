@@ -6,10 +6,10 @@ export default {
             miniState: true,
             items: [
                 {
-                    title: 'Home',
-                    icon: 'home',
-                    path: '/home',
-                    click: () => this.$router.push('home')
+                    title: 'Profile',
+                    icon: 'person',
+                    path: '/profile',
+                    click: () => this.$router.push('profile')
                 },
                 { 
                     title: 'Store',

@@ -1,10 +1,10 @@
 
 const routes = [
   {
-    path: '/home',
+    path: '/profile',
     component: () => import('layouts/LayoutMain.vue'),
     children: [
-      { path: '', component: () => import('pages/PageHome.vue') }
+      { path: '', component: () => import('pages/PageProfile.vue') }
     ],
     meta: {
       requiresAuth: true
@@ -40,7 +40,7 @@ const routes = [
   },
   {
     path: '*',
-    redirect: '/home'
+    redirect: '/profile'
   }
 ]
 
