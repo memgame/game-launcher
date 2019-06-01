@@ -8,7 +8,15 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  created: async function() {
+    await this.$store.dispatch("checkNewestGameVersionAsync");
+    /*
+    if (!this.$store.getters.getIsCurrentVersionUpToDate) {
+      await this.$store.dispatch("downloadNewestGameVersionAsync");
+    }
+    */
+  }
 }
 </script>
 
