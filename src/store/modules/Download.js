@@ -1,5 +1,6 @@
 import fse from 'fs-extra'
 import firebase from 'firebase'
+import settings from 'electron-settings'
 // https://www.npmjs.com/package/request
 // https://www.npmjs.com/package/request-progress
 // import download from 'download'
@@ -7,7 +8,7 @@ import extractZip from 'extract-zip'
 import config from '../../../config/config'
 
 const state = {
-    currentGameVersion: null,
+    currentGameVersion: settings.get('currentGameVersion') || null,
     newestGameVersion: null,
     newestGameVersionDownloadLink: null,
     isGettingNewestGameVersion: false
@@ -73,6 +74,7 @@ const actions = {
             (err) => {
                 if (!err) {
                     console.log('DONE EXTRACT')
+                    settings.set('currentGameVersion', state.newestGameVersion)
                     commit('SET_CURRENT_GAME_VERSION', state.newestGameVersion)
                 }
                 fse.remove(config.tmpFolderName, (err) => {
