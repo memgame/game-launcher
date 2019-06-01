@@ -1,6 +1,8 @@
 import fse from 'fs-extra'
 import firebase from 'firebase'
 import settings from 'electron-settings'
+import request from 'request'
+import requestProgress from 'request-progress'
 // https://www.npmjs.com/package/request
 // https://www.npmjs.com/package/request-progress
 // import download from 'download'
@@ -11,7 +13,8 @@ const state = {
     currentGameVersion: settings.get('currentGameVersion') || null,
     newestGameVersion: null,
     newestGameVersionDownloadLink: null,
-    isGettingNewestGameVersion: false
+    isGettingNewestGameVersion: false,
+    downloadPercent: 0
 }
 
 const mutations = {
@@ -26,6 +29,9 @@ const mutations = {
     },
     SET_IS_GETTING_NEWEST_GAME_VERSION(state, value) {
         state.isGettingNewestGameVersion = value
+    },
+    SET_DOWNLOAD_PERCENT(state, value) {
+        state.downloadPercent = value
     }
 }
 
@@ -34,14 +40,10 @@ const actions = {
         var db = firebase.firestore()
         await db.collection('gameBuilds').orderBy('version', 'desc').limit(1).get()
             .then(function (querySnapshot) {
-                console.log(querySnapshot)
                 querySnapshot.forEach(function (doc) {
                     // doc.data() is never undefined for query doc snapshots
                     var data = doc.data()
-                    console.log(data)
                     commit('SET_NEWEST_GAME_VERSION', data.version)
-                    //TODO check OS and get download link for the specific OS
-                    console.log(data[process.platform])
                     commit('SET_NEWEST_GAME_VERSION_DOWNLOAD_LINK', data[process.platform])
                 })
             })
@@ -50,17 +52,30 @@ const actions = {
             })
     },
     async downloadNewestGameVersionAsync({ state, commit, dispatch }) {
+        commit('SET_DOWNLOAD_PERCENT', 0)
         commit('SET_IS_GETTING_NEWEST_GAME_VERSION', true)
+        console.log('start downloading')
         console.log(state.newestGameVersionDownloadLink)
-        await download(state.newestGameVersionDownloadLink, config.tmpFolderName)
-            .then(() => {
-                console.log('DONE DOWNLOAD')
-                dispatch('installNewestGameVersion')
-            })
-            .catch((err) => {
-                commit('SET_IS_GETTING_NEWEST_GAME_VERSION', false)
-                alert(err)
-            })
+
+        if (!fse.existsSync(config.tmpFolderName)){
+            fse.mkdirSync(config.tmpFolderName);
+        }
+
+        requestProgress(request(state.newestGameVersionDownloadLink), {})
+        .on('progress', (state) => {
+            console.log(state)
+            commit('SET_DOWNLOAD_PERCENT', state.percent)
+        })
+        .on('error', (err) => {
+            console.log(err)
+            commit('SET_IS_GETTING_NEWEST_GAME_VERSION', false)
+        })
+        .on('end', () => {
+            console.log('end download game')
+            commit('SET_DOWNLOAD_PERCENT', 1)
+            dispatch('installNewestGameVersion')
+        })
+        .pipe(fse.createWriteStream(`${config.tmpFolderName}/${config.game.zipFileName}`))
     },
     installNewestGameVersion({ state, commit }) {
         extractZip(

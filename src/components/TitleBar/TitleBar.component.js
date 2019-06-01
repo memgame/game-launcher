@@ -1,3 +1,5 @@
+import { mapActions, mapGetters } from 'vuex'
+
 var colors = new Array(
   [8, 171, 172],
   [62, 35, 255],
@@ -57,7 +59,11 @@ var gradientInterval = setInterval(updateGradient, 30);
 
 export default {
   name: 'title-bar',
+  computed: {
+    ...mapGetters(['getIsCurrentVersionUpToDate', 'getIsGettingNewestGameVersion'])
+  },
   methods: {
+    ...mapActions(['startGameAsync']),
     minimize () {
       if (process.env.MODE === 'electron') {
         this.$q.electron.remote.BrowserWindow.getFocusedWindow().minimize()

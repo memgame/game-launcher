@@ -7,10 +7,10 @@
       <q-btn
         dense
         flat
-        @click="() => {}"
+        @click="startGameAsync"
         class="q-electron-drag--exception btn-play"
         label="Play"
-        v-if="$route.path != '/login'"
+        v-if="$route.path != '/login' && getIsCurrentVersionUpToDate"
       />
       <q-space />
 

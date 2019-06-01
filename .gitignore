@@ -18,3 +18,9 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+
+# game download folder
+tmp
+
+# game install folder
+game
