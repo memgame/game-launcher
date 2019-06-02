@@ -13,6 +13,8 @@ export default {
     await this.$store.dispatch("checkNewestGameVersionAsync");
     if (!this.$store.getters.getIsCurrentVersionUpToDate) {
       await this.$store.dispatch("downloadNewestGameVersionAsync");
+    } else {
+      console.info('Game is up to date!')
     }
   }
 }

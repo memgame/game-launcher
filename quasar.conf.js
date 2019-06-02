@@ -45,7 +45,8 @@ module.exports = function (ctx) {
         'QBar',
         'QSpace',
         'QSpinnerPuff',
-        'QInput'
+        'QInput',
+        'QCircularProgress'
       ],
 
       directives: [

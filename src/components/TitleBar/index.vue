@@ -12,6 +12,8 @@
         label="Play"
         v-if="$route.path != '/login' && getIsCurrentVersionUpToDate"
       />
+      <progress-download v-if="getIsDownloadingGame" />
+      <progress-install v-if="getIsInstallingGame" />
       <q-space />
 
       <q-btn dense flat icon="minimize" @click="minimize" class="q-electron-drag--exception"/>
