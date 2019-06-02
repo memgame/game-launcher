@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <div>Page Settings</div>
+    <server-settings />
   </q-page>
 </template>
 
@@ -8,7 +8,11 @@
 </style>
 
 <script>
+import ServerSettings from '../components/ServerSettings'
 export default {
-  name: 'PageSettings'
+  name: 'page-settings',
+  components: {
+    ServerSettings
+  }
 }
 </script>

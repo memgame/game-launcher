@@ -19,7 +19,7 @@
 import Flag from '../components/Flag'
 import DisplayName from '../components/DisplayName'
 export default {
-  name: 'PageProfile',
+  name: 'page-profile',
   components: {
     Flag,
     DisplayName

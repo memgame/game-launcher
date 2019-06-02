@@ -9,6 +9,6 @@
 
 <script>
 export default {
-  name: 'PageStore'
+  name: 'page-store'
 }
 </script>

@@ -1,6 +1,5 @@
 import config from '../../../config/config'
 // TODO Persist Settings
-// TODO make reset to default
 const state = {
     serverIp: config.server.ip,
     port: config.server.port,
