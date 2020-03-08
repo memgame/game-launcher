@@ -107,7 +107,7 @@ export default {
 
 <style lang="stylus" scoped>
 .background {
-  background-image: url("~assets//backgroundXayah.jpg");
+  background-image: url("~assets//backgroundLauncher.jpg");
   background-position-x: -100px;
   background-size: cover; 
   box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
