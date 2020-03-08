@@ -32,6 +32,8 @@ function createWindow () {
   })
 }
 
+app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required')
+
 app.on('ready', createWindow)
 
 app.on('window-all-closed', () => {

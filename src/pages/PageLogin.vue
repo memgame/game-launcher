@@ -43,6 +43,9 @@
 
       </div>
     </div>
+    <audio id="audioLogin" loop>
+      <source src="~assets/music/FrozenFields_LOOP.wav" type="audio/wav">
+    </audio>
   </q-page>
 </template>
 
@@ -71,7 +74,9 @@ export default {
     ...mapState(['User'])
   },
   mounted() {
-
+    const elementAudio = document.getElementById('audioLogin')
+    console.log(elementAudio)
+    elementAudio.play()
   },
   methods: {
     ...mapActions(['signIn', 'signUp']),
